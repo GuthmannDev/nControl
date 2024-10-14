@@ -1,9 +1,0 @@
-jobs:
-  build:
-    # ...
-    permissions:
-      contents: write
-    steps:
-      - uses: Kir-Antipov/mc-publish@v3.3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,46 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers the workflow on version tag pushes (e.g., v1.0.0)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'  # Specify the Java version you need
+          distribution: 'adopt'
+
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean shadowJar
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}  # The tag for the release
+          release_name: Release ${{ github.ref }}  # Name of the release
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload JAR to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          upload_artifact: true
+          asset_path: build/libs/*.jar  # Adjust this path if needed
+          tag: ${{ steps.create_release.outputs.id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

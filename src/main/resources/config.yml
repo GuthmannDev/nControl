@@ -1,0 +1,9 @@
+# This is the configuration file for nControl - Server System
+# This configuration file and every other config file is hand made by NelminDev
+#
+# IMPORTANT: Only edit the values, that means everything after an ":" except when there is nothing.
+
+prefix:
+  system: "&9&ln&c&lControl &8&l»&r"
+  msg: "&e&lMSG &8&l»&r %msg_sender% &8&l→&r %msg_receiver%"
+  economy: "&a&lEconomy &8&l»&r"

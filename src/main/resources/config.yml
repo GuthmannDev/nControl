@@ -5,5 +5,20 @@
 
 prefix:
   system: "&9&ln&c&lControl &8&l»&r"
-  msg: "&e&lMSG &8&l»&r %msg_sender% &8&l→&r %msg_receiver%"
+  msg: "&e&lMSG &8&l»&r"
   economy: "&a&lEconomy &8&l»&r"
+
+format:
+  tablist: "%vault_prefix% %player_name% %vault_suffix%"
+  overHead: "%vault_prefix% %player_name% %vault_suffix%"
+  chat: "%vault_prefix% %player_name% &8&l»&r %nc_chat_message%"
+  chat_you: "YOU" # When the message in the normal chat is sent, what should be shown to the sender? Use %player_name% for the username.
+  msg: "%nc_msg_sender% &8&l→&r %nc_msg_receiver% &8&l»&r %nc_msg_message%"
+  currency: "%nc_eco_currency% %vault_eco_balance_formatted%" # Only when using nControl Economy
+
+  # Only applies when using nControl Economy (Built-In Economy of nControl, see features.yml)
+economy:
+  starter_balance: 1000.0
+  currency:
+    singular: "$" # Example: "$" or "Dollar"
+    plural: "$" # Example: "$" or "Dollars"

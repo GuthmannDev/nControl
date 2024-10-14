@@ -1,0 +1,1 @@
+nc.chat.colored

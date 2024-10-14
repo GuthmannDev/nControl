@@ -1,0 +1,12 @@
+error:
+  no:
+    perms: "&cYou do not have the rights to do that!"
+    player: "&cOnly a player can execute this command!"
+    player_found: "&cThis player does not exist!"
+
+  economy: # Only applies when using nControl Economy (Built-In Economy of nControl, see features.yml)
+    withdraw:
+      negative_funds: "&cCannot withdraw negative funds!"
+      insufficient_funds: "&cInsufficient funds!"
+    deposit:
+      too_much: "&cYou are trying to deposit more money than possible, let me fix that!"

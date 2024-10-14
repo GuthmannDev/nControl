@@ -14,11 +14,24 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
     }
+    maven("https://jitpack.io") {
+        name = "jitpack"
+    }
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/") {
+        name = "placeholder-api"
+    }
+    maven("https://repo.dmulloy2.net/repository/public/") {
+        name = "protocollib"
+    }
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7")
+    compileOnly("me.clip:placeholderapi:2.11.6")
+    compileOnly("com.comphenix.protocol:ProtocolLib:4.7.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 }
 
 val targetJavaVersion = 21

@@ -7,29 +7,31 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.AsyncPlayerChatEvent
 
-class AsyncPlayerChatEvent(private val plugin: nControl) : Listener {
+class AsyncPlayerChatListener(private val plugin: nControl) : Listener {
 
     @EventHandler
-    fun onAsyncChatEvent(event: AsyncPlayerChatEvent) {
+    fun onAsyncChat(event: AsyncPlayerChatEvent) {
         event.isCancelled = true
 
         val player = event.player
-        var message = PlaceholderAPI.setPlaceholders(
-            player,
-            plugin.config.get("format.chat").toString()
-        ).replace("%nc_chat_message%", event.message)
+        var message = PlaceholderAPI.setPlaceholders(player, plugin.config.get("format.chat") as String)
+            .replace("%nc_chat_message%", event.message)
 
         if (player.hasPermission("nc.chat.colored")) {
-           message = TextBuilder(message).getColorized()
+            message = TextBuilder(message).getColorized()
         }
 
         plugin.server.onlinePlayers.forEach { onlinePlayer ->
             val data = plugin.loadedUserData.find { it.uuid == onlinePlayer.uniqueId }
-            if (message.contains(onlinePlayer.name)) {
-                message.replace(onlinePlayer.name, TextBuilder(plugin.config.get("format.chat_you").toString()).getColorized())
-                message = PlaceholderAPI.setPlaceholders(onlinePlayer, message)
+            val formattedMessage = message.replace(
+                onlinePlayer.name,
+                TextBuilder(plugin.config.get("format.chat_you") as String).getColorized()
+            )
+            val finalMessage = PlaceholderAPI.setPlaceholders(onlinePlayer, formattedMessage)
+
+            if (data?.chatDisabled != true) {
+                onlinePlayer.sendMessage(finalMessage)
             }
-            if (data != null && !data.chatDisabled) onlinePlayer.sendMessage(message)
         }
     }
 }

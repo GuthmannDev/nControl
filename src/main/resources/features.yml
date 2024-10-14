@@ -1,0 +1,7 @@
+# You can choose which features will be available in nControl
+# For example, disable economy when a different Economy Plugin is in usage,
+
+# true = enabled, false = disabled
+
+economy: true
+chat: true

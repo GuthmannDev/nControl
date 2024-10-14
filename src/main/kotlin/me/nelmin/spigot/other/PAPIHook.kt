@@ -4,12 +4,12 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import me.nelmin.spigot.nControl
 import org.bukkit.OfflinePlayer
 
-class PAPIExpansion(//
+class PAPIHook(//
     private val plugin: nControl
 ) : PlaceholderExpansion() {
 
     override fun getIdentifier(): String {
-        return plugin.description.name + "-Money"
+        return "nc"
     }
 
     override fun getAuthor(): String {
@@ -24,9 +24,12 @@ class PAPIExpansion(//
         return true
     }
 
-    override fun onRequest(player: OfflinePlayer?, params: String): String? {
+    override fun onRequest(offlinePlayer: OfflinePlayer?, params: String): String? {
+        if (offlinePlayer == null)
 
+            if (params.equals("", true))
+                return "wuff"
 
-        return null;
+        return null
     }
 }

@@ -2,3 +2,8 @@ name: nControl
 version: '1.0'
 main: me.nelmin.spigot.nControl
 api-version: '1.21'
+
+depend:
+  - "PlaceholderAPI"
+  - "Vault"
+  - "ProtocolLib"
